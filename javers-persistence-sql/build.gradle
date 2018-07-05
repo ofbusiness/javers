@@ -1,3 +1,5 @@
+apply plugin: 'maven-publish'
+
 dependencies {
     compile project(':javers-core')
     compile "org.polyjdbc:polyjdbc:$polyjdbcVersion"
@@ -51,4 +53,23 @@ test {
     exclude 'org/javers/repository/sql/integration/**'
 }
 
-
+publishing {
+    repositories {
+        maven {
+            credentials {
+                username "$publisherUsername"
+                password "$publisherPassword"
+            }
+            if (project.version.endsWith("-SNAPSHOT")) {
+                url "$repositoryUrl/libs-snapshot"
+            } else {
+                url "$repositoryUrl/libs-release"
+            }
+        }
+    }
+    publications {
+        mavenJava(MavenPublication) {
+            from components.java
+        }
+    }
+}
