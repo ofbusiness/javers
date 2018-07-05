@@ -15,13 +15,7 @@ class AnySnapshotFilter extends SnapshotFilter {
     }
 
     @Override
-    void addFrom(SelectQuery query) {
-        query.from(getFromCommitWithSnapshot());
-    }
-
-    @Override
     void addWhere(SelectQuery query) {
         query.where("1=1");
     }
-
 }
