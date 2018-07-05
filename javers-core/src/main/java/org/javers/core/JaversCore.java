@@ -190,7 +190,6 @@ class JaversCore implements Javers {
 
     /**
      * @see TypeName
-     * @since 2.3
      */
     @Override
     public <T extends ManagedType> T getTypeMapping(String typeName) {

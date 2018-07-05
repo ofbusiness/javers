@@ -553,7 +553,6 @@ public interface Javers {
 
     /**
      * Returns {@link ManagedType} which underlies given typeName
-     * @since 2.3
      */
      <T extends ManagedType> T getTypeMapping(String typeName);
 
