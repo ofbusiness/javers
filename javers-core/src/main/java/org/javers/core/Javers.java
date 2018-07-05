@@ -7,10 +7,12 @@ import org.javers.core.diff.Change;
 import org.javers.core.diff.Diff;
 import org.javers.core.diff.changetype.PropertyChange;
 import org.javers.core.json.JsonConverter;
+import org.javers.core.metamodel.annotation.TypeName;
 import org.javers.core.metamodel.object.CdoSnapshot;
 import org.javers.core.metamodel.object.GlobalId;
 import org.javers.core.metamodel.property.Property;
 import org.javers.core.metamodel.type.JaversType;
+import org.javers.core.metamodel.type.ManagedType;
 import org.javers.repository.jql.*;
 import org.javers.shadow.Shadow;
 
@@ -548,6 +550,12 @@ public interface Javers {
      * </pre>
      */
     <T extends JaversType> T getTypeMapping(Type userType);
+
+    /**
+     * Returns {@link ManagedType} which underlies given typeName
+     * @since 2.3
+     */
+     <T extends ManagedType> T getTypeMapping(String typeName);
 
     /**
      * Returns {@link Property} which underlies given {@link PropertyChange}

@@ -12,6 +12,7 @@ import org.javers.core.json.JsonConverter;
 import org.javers.core.metamodel.object.CdoSnapshot;
 import org.javers.core.metamodel.property.Property;
 import org.javers.core.metamodel.type.JaversType;
+import org.javers.core.metamodel.type.ManagedType;
 import org.javers.repository.jql.GlobalIdDTO;
 import org.javers.repository.jql.JqlQuery;
 import org.javers.repository.sql.JaversSqlRepository;
@@ -155,6 +156,10 @@ public class JaversTransactionalDecorator implements Javers {
     @Override
     public <T extends JaversType> T getTypeMapping(Type clientsType) {
         return delegate.getTypeMapping(clientsType);
+    }
+
+    @Override public <T extends ManagedType> T getTypeMapping(String typeName) {
+        return delegate.getTypeMapping(typeName);
     }
 
     @PostConstruct
