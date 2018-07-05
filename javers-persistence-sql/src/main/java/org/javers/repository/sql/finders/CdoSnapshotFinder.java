@@ -96,7 +96,7 @@ public class CdoSnapshotFinder {
 
     private List<Pair<CdoSnapshotSerialized,Long>> queryForCdoSnapshotDTOs(SnapshotFilter snapshotFilter, Optional<QueryParams> queryParams) {
         SelectQuery query =  polyJDBC.query().select(snapshotFilter.select());
-        snapshotFilter.addFrom(query);
+        snapshotFilter.addFrom(query, queryParams);
         snapshotFilter.addWhere(query);
         if (queryParams.isPresent()) {
             snapshotFilter.applyQueryParams(query, queryParams.get());
