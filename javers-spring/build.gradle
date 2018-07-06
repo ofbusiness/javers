@@ -1,3 +1,5 @@
+apply plugin: 'maven-publish'
+
 repositories {
     maven {
         url "http://repo.spring.io/milestone"
@@ -28,4 +30,25 @@ dependencies {
     testCompile "com.github.fakemongo:fongo:$fongoVersion"
     testCompile "org.springframework.boot:spring-boot-starter-data-mongodb:$springBootVersion"
     testCompile project(':javers-persistence-mongo')
+}
+
+publishing {
+    repositories {
+        maven {
+            credentials {
+                username "$publisherUsername"
+                password "$publisherPassword"
+            }
+            if (project.version.endsWith("-SNAPSHOT")) {
+                url "$repositoryUrl/libs-snapshot"
+            } else {
+                url "$repositoryUrl/libs-release"
+            }
+        }
+    }
+    publications {
+        mavenJava(MavenPublication) {
+            from components.java
+        }
+    }
 }
