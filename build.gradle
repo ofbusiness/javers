@@ -37,7 +37,7 @@ subprojects {
     targetCompatibility = 1.8
 
     project.group = 'org.javers'
-    project.version = scmVersion.version
+    project.version = '3.10.2-SNAPSHOT'
 
     repositories {
         mavenCentral()
