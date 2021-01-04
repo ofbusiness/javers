@@ -1,5 +1,7 @@
 package org.javers.core.commit;
 
+import java.util.Random;
+
 /**
  * Generates unique and monotonically increasing commit identifiers. <br>
  * Thread safe. Should not be used in distributed applications.
@@ -9,6 +11,8 @@ package org.javers.core.commit;
  */
 class CommitSeqGenerator {
     private HandedOutIds handedOut = new HandedOutIds();
+    private Integer randomizer = new Random().nextInt(9000);
+
 
     synchronized CommitId nextId(CommitId head)
     {
@@ -21,7 +25,10 @@ class CommitSeqGenerator {
             result = new CommitId(major,0);
         }
         else {
-            result = new CommitId(major, lastReturned.getMinorId() + 1);
+            int serverInitMinorKey = lastReturned.getMinorId() < 1000000 ?
+                lastReturned.getMinorId() + randomizer + 1000000 :
+                lastReturned.getMinorId();
+            result = new CommitId(major, serverInitMinorKey + 1);
         }
 
         handedOut.put(result);
