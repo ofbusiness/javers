@@ -135,6 +135,16 @@ subprojects {
                 from components.java
             }
         }
+        repositories {
+            maven {
+                name = "libs-snapshot" //  optional target repository name
+                url = "https://mvn.ofbusiness.in/artifactory/libs-snapshot"
+                credentials {
+                    username = 'publisher'
+                    password = 'AP7wTYpjVvYHnVw8jn8kYYMezSi'
+                }
+            }
+        }
     }
 }
 
