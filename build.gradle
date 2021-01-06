@@ -2,7 +2,7 @@ buildscript {
     repositories {
         mavenCentral()
         jcenter()
-        maven { url 'http://repo.spring.io/plugins-release' }
+        maven { url 'https://repo.spring.io/plugins-release' }
     }
 
     dependencies {
@@ -37,7 +37,7 @@ subprojects {
     targetCompatibility = 1.8
 
     project.group = 'org.javers'
-    project.version = scmVersion.version
+    project.version = '3.10.2-SNAPSHOT'
 
     repositories {
         mavenCentral()
@@ -133,6 +133,16 @@ subprojects {
         publications {
             libraryJar(MavenPublication) {
                 from components.java
+            }
+        }
+        repositories {
+            maven {
+                name = "libs-snapshot" //  optional target repository name
+                url = "https://mvn.ofbusiness.in/artifactory/libs-snapshot"
+                credentials {
+                    username = 'publisher'
+                    password = 'AP7wTYpjVvYHnVw8jn8kYYMezSi'
+                }
             }
         }
     }
